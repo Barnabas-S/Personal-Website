@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter;
+    line-height: 1.6;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1.5rem 3rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+#hero {
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+
+    text-align: center;
+
+    background-image: url(../images/hero_background.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 20%,
+        black 80%,
+        transparent
+    );
+
+}
+
+#hero h2 {
+    font-size: 8rem;
+}
+
+#hero p {
+    font-size: 2rem;
+}
+
+#projects {
+
+    padding: 1.5rem 3rem;
+
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: left;
+
+    gap: 1rem;
+
+}
+
+#projects h2 {
+
+    align-self: flex-start;
+}
+
+#contact {
+
+    padding: 1.5rem 3rem;
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: left;
+
+    gap: 0.5rem;
+
+
+}
+
+#contact h2 {
+
+    align-self: flex-start;
+}
