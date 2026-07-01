@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Inter, system-ui, sans-serif;
     line-height: 1.6;
@@ -59,9 +63,17 @@ nav a:focus-visible {
 
     text-align: center;
 
-    background-image: url(../images/hero_background.jpg);
-    background-position: center;
-    background-size: cover;
+    background: linear-gradient(
+        120deg,
+        #f5f0dc,
+        #eec9ec,
+        #a78bd8,
+        #8f8fd4,
+        #eec9ec,
+        #f5f0dc
+    );
+    background-size: 300% 300%;
+    animation: hero-gradient 18s ease infinite;
     position: relative;
     mask-image: linear-gradient(
         to bottom,
@@ -71,6 +83,18 @@ nav a:focus-visible {
         transparent
     );
 
+}
+
+@keyframes hero-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 #hero h2 {
@@ -118,6 +142,15 @@ nav a:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    #hero {
+        animation: none;
+        background-position: 0% 50%;
+    }
+
     .js .reveal {
         opacity: 1;
         transform: none;
