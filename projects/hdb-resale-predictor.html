@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singapore HDB Resale Price Predictor | Barnabas Sng</title>
+    <meta name="description" content="A gradient boosted regression model that predicts future resale prices of Singapore HDB flats.">
+
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="project-hero">
+            <div class="section-inner">
+                <span class="tag">Machine Learning</span>
+                <h1>Singapore HDB Resale Price Predictor</h1>
+                <p class="tagline">
+                    A gradient boosted regression model that predicts future resale prices
+                    of Singapore HDB flats from historical transaction data.
+                </p>
+            </div>
+        </section>
+
+        <section class="project-detail reveal">
+            <div class="section-inner">
+                <h2>Overview</h2>
+                <p>
+                    Singapore's HDB resale market publishes rich historical transaction data,
+                    but pricing a flat still comes down to gut feel for most buyers and sellers.
+                    This project trains a gradient boosted regressor on past resale transactions
+                    to predict future resale prices, using features like flat type, floor area,
+                    remaining lease, and location.
+                </p>
+
+                <h2>What it covers</h2>
+                <ul>
+                    <li>Data cleaning and feature engineering on historical HDB resale transactions</li>
+                    <li>Gradient boosted regression model training and hyperparameter tuning</li>
+                    <li>Model evaluation against held-out transaction data</li>
+                </ul>
+
+                <h2>Tech stack</h2>
+                <ul>
+                    <li>Python</li>
+                    <li>Gradient boosted regression (scikit-learn / XGBoost-style modelling)</li>
+                    <li>SQL for data wrangling</li>
+                </ul>
+
+                <a class="back-link" href="../index.html#projects">&larr; Back to projects</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Barnabas Sng</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+
+</body>
+</html>
