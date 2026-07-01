@@ -16,7 +16,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -25,6 +25,7 @@
     <header>
         <nav>
             <ul>
+                <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -40,49 +41,71 @@
             </p>
         </section>
 
-        <section id="about">
-            <h2>About</h2>
-            <p>
-                I'm a fresh NUS graduate in Mathematics and Computer Science, drawn to problems
-                where rigorous math meets real-world data. My work spans quantitative finance,
-                where I used Monte Carlo methods to price options, and machine learning, where
-                I built a regression model to predict Singapore HDB resale prices.
-            </p>
+        <section id="about" class="reveal">
+            <div class="section-inner">
+                <span class="eyebrow">Who I am</span>
+                <h2>About</h2>
+                <p>
+                    I'm a fresh NUS graduate in Mathematics and Computer Science, drawn to problems
+                    where rigorous math meets real-world data. My work spans quantitative finance,
+                    where I used Monte Carlo methods to price options, and machine learning, where
+                    I built a regression model to predict Singapore HDB resale prices.
+                </p>
+                <div class="skills">
+                    <span>Python</span>
+                    <span>Mathematics</span>
+                    <span>Machine Learning</span>
+                    <span>Monte Carlo Methods</span>
+                    <span>SQL</span>
+                </div>
+            </div>
         </section>
 
-        <section id="projects">
-            <h2>Projects</h2>
+        <section id="projects" class="reveal">
+            <div class="section-inner">
+                <span class="eyebrow">What I've built</span>
+                <h2>Projects</h2>
 
-            <article>
-                <h3>Monte Carlo Simulations and their Applications in Finance </h3>
-                <p>My capstone project was about using Monte Carlo simulations to price options. 
-                    The paper mainly focuses on different variance reduction techniques, placing emphasis
-                    on mathematical proofs.
-                </p>
-            </article>
+                <article>
+                    <span class="tag">Quant Finance</span>
+                    <h3>Monte Carlo Simulations and their Applications in Finance</h3>
+                    <p>My capstone project was about using Monte Carlo simulations to price options.
+                        The paper mainly focuses on different variance reduction techniques, placing emphasis
+                        on mathematical proofs.
+                    </p>
+                    <a class="project-link" href="https://github.com/BarnabasSng/Monte-Carlo-Simulations-and-their-Applications-in-Finance/blob/master/MA4198_BarnabasSng.pdf" target="_blank" rel="noopener">Read the paper</a>
+                </article>
 
-            <article>
-                <h3>Singapore HDB resale price predictor</h3>
-                <p>This project uses machine learning, specifically the gradient boosted regressor 
-                    model, to predict future resale prices of Singapore HDB flats.
-                </p>
-            </article>
+                <article>
+                    <span class="tag">Machine Learning</span>
+                    <h3>Singapore HDB resale price predictor</h3>
+                    <p>This project uses machine learning, specifically the gradient boosted regressor
+                        model, to predict future resale prices of Singapore HDB flats.
+                    </p>
+                </article>
+            </div>
         </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-
-            <a href="mailto:barnabassng10@gmail.com">Email</a>
-            <a href="https://github.com/BarnabasSng">Github </a>
-            <a href="https://www.linkedin.com/in/barnabas-sng">LinkedIn</a>
-            <a href="files/Barnabas_Sng_resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <section id="contact" class="reveal">
+            <div class="section-inner">
+                <span class="eyebrow">Get in touch</span>
+                <h2>Contact</h2>
+                <div class="contact-links">
+                    <a href="mailto:barnabassng10@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
+                    <a href="https://github.com/BarnabasSng"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>Github</a>
+                    <a href="https://www.linkedin.com/in/barnabas-sng"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48Z"/></svg>LinkedIn</a>
+                    <a href="files/Barnabas_Sng_resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>Resume</a>
+                </div>
+            </div>
         </section>
 
     </main>
 
     <footer>
-        <p>&copy; 2026 Barnabas</p>
+        <p>&copy; 2026 Barnabas Sng</p>
     </footer>
+
+    <script src="js/main.js"></script>
 
 </body>
 </html>
