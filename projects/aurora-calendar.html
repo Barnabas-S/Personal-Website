@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Calendar | Barnabas Sng</title>
+    <meta name="description" content="A self-hosted, privacy-first calendar with Google Calendar feature parity, email-to-event proposals via a local LLM, and CalDAV sync.">
+
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="project-hero">
+            <div class="section-inner">
+                <span class="tag">Full-Stack</span>
+                <h1>Aurora Calendar</h1>
+                <p class="tagline">
+                    A self-hosted, privacy-first calendar built for full data ownership and
+                    Google Calendar feature parity, with zero Google integration.
+                </p>
+            </div>
+        </section>
+
+        <section class="project-detail reveal">
+            <div class="section-inner">
+                <h2>Overview</h2>
+                <p>
+                    Aurora Calendar is a self-hosted calendar that runs entirely on hardware
+                    you control. It aims to match Google Calendar feature for feature and go
+                    beyond it, while keeping every piece of data - events, reminders, and even
+                    email parsing - on your own server.
+                </p>
+
+                <h2>Email to event, with your approval</h2>
+                <p>
+                    Aurora reads your mailbox over read-only IMAP and hands incoming emails to
+                    a local LLM running on your own machine. Extracted events are never added
+                    automatically - each one lands in a review queue as a proposal you approve,
+                    edit, or dismiss. No email content is ever sent to a third-party AI API.
+                </p>
+
+                <h2>Key features</h2>
+                <ul>
+                    <li>Day, Week, Month, Agenda, and Year views with drag-to-move and resize</li>
+                    <li>Recurring events (RRULE) with client-side occurrence expansion</li>
+                    <li>Email inbox scanning that turns invites and free text into proposed events</li>
+                    <li>CalDAV server for two-way sync with any standard calendar client</li>
+                    <li>Installable PWA with web push reminders and a daily agenda digest</li>
+                    <li>Shared calendars via signed, token-based read-only feeds</li>
+                    <li>Natural-language quick-add ("lunch w/ Ama fri 12")</li>
+                    <li>.ics import/export, including idempotent Google Takeout import</li>
+                </ul>
+
+                <h2>Tech stack</h2>
+                <ul>
+                    <li>Frontend: React, TypeScript, Vite, Tailwind CSS</li>
+                    <li>Backend: Node.js, NestJS, TypeScript</li>
+                    <li>Database: PostgreSQL, Prisma ORM</li>
+                    <li>Sync: standards-based CalDAV server built on top of the same database</li>
+                    <li>Email parsing: local LLM via LM Studio / Ollama, with rules-based .ics parsing first</li>
+                    <li>Notifications: Web Push (VAPID) via a service worker</li>
+                    <li>Deployment: Docker Compose on a self-hosted VPS</li>
+                </ul>
+
+                <a class="back-link" href="../index.html#projects">&larr; Back to projects</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Barnabas Sng</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+
+</body>
+</html>
