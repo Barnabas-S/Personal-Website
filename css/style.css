@@ -83,6 +83,29 @@ nav a:focus-visible {
         transparent
     );
 
+    --mx: 50%;
+    --my: 40%;
+
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(
+        600px circle at var(--mx) var(--my),
+        rgba(255, 255, 255, 0.45),
+        transparent 60%
+    );
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+}
+
+#hero h2,
+#hero p {
+    position: relative;
+    z-index: 1;
 }
 
 @keyframes hero-gradient {
