@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/aurora-demo.css">
 </head>
 <body>
 
@@ -48,6 +49,110 @@
                     beyond it, while keeping every piece of data - events, reminders, and even
                     email parsing - on your own server.
                 </p>
+
+                <h2>Try a live slice of it</h2>
+                <p>
+                    This is a small, self-contained piece of Aurora running right here in the page.
+                    Click an email in the inbox to scan it (the real app uses a local LLM; here the
+                    result is simulated), approve or dismiss the proposal, and drag events around
+                    the week. Nothing leaves your browser.
+                </p>
+
+                <div class="aurora-demo" id="aurora-demo">
+                    <div class="ad-topbar">
+                        <span class="ad-logo" aria-hidden="true"></span>
+                        <strong>Aurora</strong>
+                        <span class="ad-week">Week view</span>
+                        <button type="button" class="ad-reset">Reset demo</button>
+                    </div>
+
+                    <div class="ad-body">
+                        <aside class="ad-inbox" aria-label="Demo inbox and review queue">
+                            <div>
+                                <h3>Inbox <span class="ad-imap">read-only IMAP</span></h3>
+                                <ul class="ad-emails">
+                                    <li>
+                                        <button type="button" class="ad-email" data-email="dentist">
+                                            <span class="ad-from">SmileWorks Dental</span>
+                                            <span class="ad-subj">Your appointment is confirmed for Thu, 3:00 PM</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="ad-email" data-email="offsite">
+                                            <span class="ad-from">Priya Nair</span>
+                                            <span class="ad-subj">Team offsite planning (invite.ics attached)</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="ad-email" data-email="newsletter">
+                                            <span class="ad-from">The Weekly Byte</span>
+                                            <span class="ad-subj">Newsletter: 10 CSS tricks you missed</span>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="ad-queue" aria-live="polite">
+                                <h3>Review queue</h3>
+                                <p class="ad-queue-empty">Scan an email to see proposed events here. Nothing is added without your approval.</p>
+                            </div>
+                        </aside>
+
+                        <div class="ad-calendar">
+                            <div class="ad-days" aria-hidden="true">
+                                <span></span>
+                                <span>Mon</span>
+                                <span>Tue</span>
+                                <span>Wed</span>
+                                <span>Thu</span>
+                                <span>Fri</span>
+                            </div>
+                            <div class="ad-grid">
+                                <div class="ad-times" aria-hidden="true">
+                                    <span>8:00</span>
+                                    <span>9:00</span>
+                                    <span>10:00</span>
+                                    <span>11:00</span>
+                                    <span>12:00</span>
+                                    <span>13:00</span>
+                                    <span>14:00</span>
+                                    <span>15:00</span>
+                                    <span>16:00</span>
+                                    <span>17:00</span>
+                                </div>
+                                <div class="ad-col" data-day="0">
+                                    <div class="ad-event" tabindex="0" style="--s: 1; --d: 0.5;">
+                                        <span class="ad-ev-title">Standup</span>
+                                        <span class="ad-ev-time">9:00 - 9:30</span>
+                                    </div>
+                                </div>
+                                <div class="ad-col" data-day="1">
+                                    <div class="ad-event" tabindex="0" style="--s: 6; --d: 1;">
+                                        <span class="ad-ev-title">Project sync</span>
+                                        <span class="ad-ev-time">14:00 - 15:00</span>
+                                    </div>
+                                </div>
+                                <div class="ad-col" data-day="2"></div>
+                                <div class="ad-col" data-day="3"></div>
+                                <div class="ad-col" data-day="4">
+                                    <div class="ad-event" tabindex="0" style="--s: 4; --d: 1;">
+                                        <span class="ad-ev-title">Lunch w/ Ama</span>
+                                        <span class="ad-ev-time">12:00 - 13:00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="ad-status" role="status">Tip: drag an event to another slot, or select it and use the arrow keys.</p>
+                </div>
+
+                <noscript>
+                    <p class="ad-hint">
+                        The interactive part of this demo needs JavaScript;
+                        the calendar above is a static preview.
+                    </p>
+                </noscript>
 
                 <h2>Email to event, with your approval</h2>
                 <p>
@@ -91,6 +196,7 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script src="../js/aurora-demo.js" defer></script>
 
 </body>
 </html>
