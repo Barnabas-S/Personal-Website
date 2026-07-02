@@ -24,8 +24,8 @@
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const body = demo.querySelector('.ad-body');
-    const status = demo.querySelector('.ad-status');
+    const body = demo.querySelector('.aurora-body');
+    const status = demo.querySelector('.aurora-status');
     const initialBody = body.innerHTML;
     const timers = new Set();
 
@@ -48,15 +48,15 @@
     }
 
     function dayIndexOf(eventEl) {
-        return Number(eventEl.closest('.ad-col').dataset.day);
+        return Number(eventEl.closest('.aurora-col').dataset.day);
     }
 
     function refreshEvent(el) {
         const s = getNum(el, '--s');
         const d = getNum(el, '--d');
-        const title = el.querySelector('.ad-ev-title').textContent;
-        el.querySelector('.ad-ev-time').textContent = fmtRange(s, d);
-        el.classList.toggle('ad-event--short', d < 0.75);
+        const title = el.querySelector('.aurora-ev-title').textContent;
+        el.querySelector('.aurora-ev-time').textContent = fmtRange(s, d);
+        el.classList.toggle('aurora-event--short', d < 0.75);
         el.setAttribute('aria-label',
             title + ', ' + DAYS[dayIndexOf(el)] + ' ' + fmtRange(s, d) +
             '. Drag or use arrow keys to move.');
@@ -65,7 +65,7 @@
     function moveEvent(el, day, s) {
         const d = getNum(el, '--d');
         const clamped = Math.max(0, Math.min(DAY_HOURS - d, Math.round(s * 2) / 2));
-        const col = body.querySelector('.ad-col[data-day="' + day + '"]');
+        const col = body.querySelector('.aurora-col[data-day="' + day + '"]');
         if (!col) return;
         if (el.parentElement !== col) col.appendChild(el);
         el.style.setProperty('--s', String(clamped));
@@ -74,72 +74,72 @@
 
     function createEvent(prop) {
         const el = document.createElement('div');
-        el.className = 'ad-event ad-event--email';
+        el.className = 'aurora-event aurora-event--email';
         el.tabIndex = 0;
         el.style.setProperty('--s', String(prop.start));
         el.style.setProperty('--d', String(prop.dur));
         const title = document.createElement('span');
-        title.className = 'ad-ev-title';
+        title.className = 'aurora-ev-title';
         title.textContent = prop.title;
         const time = document.createElement('span');
-        time.className = 'ad-ev-time';
+        time.className = 'aurora-ev-time';
         el.append(title, time);
-        body.querySelector('.ad-col[data-day="' + prop.day + '"]').appendChild(el);
+        body.querySelector('.aurora-col[data-day="' + prop.day + '"]').appendChild(el);
         refreshEvent(el);
         if (!reduceMotion) el.classList.add('is-new');
         return el;
     }
 
     function setEmailState(emailBtn, text) {
-        let state = emailBtn.querySelector('.ad-state');
+        let state = emailBtn.querySelector('.aurora-state');
         if (!text) {
             if (state) state.remove();
             return;
         }
         if (!state) {
             state = document.createElement('span');
-            state.className = 'ad-state';
+            state.className = 'aurora-state';
             emailBtn.appendChild(state);
         }
         state.textContent = text;
     }
 
     function queueEl() {
-        return body.querySelector('.ad-queue');
+        return body.querySelector('.aurora-queue');
     }
 
     function updateQueueEmpty() {
-        const empty = queueEl().querySelector('.ad-queue-empty');
-        const hasCards = Boolean(queueEl().querySelector('.ad-proposal'));
+        const empty = queueEl().querySelector('.aurora-queue-empty');
+        const hasCards = Boolean(queueEl().querySelector('.aurora-proposal'));
         empty.hidden = hasCards;
     }
 
     function addProposalCard(id, prop) {
         const card = document.createElement('div');
-        card.className = 'ad-proposal';
+        card.className = 'aurora-proposal';
         card.dataset.email = id;
 
         const title = document.createElement('span');
-        title.className = 'ad-prop-title';
+        title.className = 'aurora-prop-title';
         title.textContent = prop.title;
 
         const time = document.createElement('span');
-        time.className = 'ad-prop-time';
+        time.className = 'aurora-prop-time';
         time.textContent = DAYS[prop.day] + ' ' + fmtRange(prop.start, prop.dur);
 
         const src = document.createElement('span');
-        src.className = 'ad-prop-src';
+        src.className = 'aurora-prop-src';
         src.textContent = 'From: ' + prop.source;
 
         const actions = document.createElement('div');
-        actions.className = 'ad-prop-actions';
+        actions.className = 'aurora-prop-actions';
         const approve = document.createElement('button');
         approve.type = 'button';
-        approve.className = 'ad-approve';
+        approve.className = 'aurora-approve';
         approve.textContent = 'Approve';
         const dismiss = document.createElement('button');
         dismiss.type = 'button';
-        dismiss.className = 'ad-dismiss';
+        dismiss.className = 'aurora-dismiss';
         dismiss.textContent = 'Dismiss';
         actions.append(approve, dismiss);
 
@@ -152,7 +152,7 @@
         const id = emailBtn.dataset.email;
         if (emailBtn.classList.contains('is-scanning') ||
             emailBtn.classList.contains('is-done') ||
-            queueEl().querySelector('.ad-proposal[data-email="' + id + '"]')) {
+            queueEl().querySelector('.aurora-proposal[data-email="' + id + '"]')) {
             return;
         }
         emailBtn.classList.add('is-scanning');
@@ -178,21 +178,21 @@
     }
 
     function emailFor(id) {
-        return body.querySelector('.ad-email[data-email="' + id + '"]');
+        return body.querySelector('.aurora-email[data-email="' + id + '"]');
     }
 
     // ---- Click handling (delegated so Reset can restore markup freely) ----
 
     demo.addEventListener('click', (ev) => {
-        const email = ev.target.closest('.ad-email');
+        const email = ev.target.closest('.aurora-email');
         if (email) {
             scanEmail(email);
             return;
         }
 
-        const approve = ev.target.closest('.ad-approve');
+        const approve = ev.target.closest('.aurora-approve');
         if (approve) {
-            const card = approve.closest('.ad-proposal');
+            const card = approve.closest('.aurora-proposal');
             const id = card.dataset.email;
             const prop = PROPOSALS[id];
             card.remove();
@@ -205,9 +205,9 @@
             return;
         }
 
-        const dismiss = ev.target.closest('.ad-dismiss');
+        const dismiss = ev.target.closest('.aurora-dismiss');
         if (dismiss) {
-            const card = dismiss.closest('.ad-proposal');
+            const card = dismiss.closest('.aurora-proposal');
             const id = card.dataset.email;
             card.remove();
             updateQueueEmpty();
@@ -218,7 +218,7 @@
             return;
         }
 
-        if (ev.target.closest('.ad-reset')) {
+        if (ev.target.closest('.aurora-reset')) {
             timers.forEach(clearTimeout);
             timers.clear();
             if (drag) {
@@ -226,7 +226,7 @@
                 drag = null;
             }
             body.innerHTML = initialBody;
-            body.querySelectorAll('.ad-event').forEach(refreshEvent);
+            body.querySelectorAll('.aurora-event').forEach(refreshEvent);
             announce('Demo reset.');
         }
     });
@@ -236,7 +236,7 @@
     let drag = null;
 
     demo.addEventListener('pointerdown', (ev) => {
-        const el = ev.target.closest('.ad-event');
+        const el = ev.target.closest('.aurora-event');
         if (!el || ev.button > 0) return;
         const rect = el.getBoundingClientRect();
         drag = { el, offsetY: ev.clientY - rect.top, moved: false };
@@ -247,13 +247,13 @@
 
     demo.addEventListener('pointermove', (ev) => {
         if (!drag) return;
-        const cols = [...body.querySelectorAll('.ad-col')];
+        const cols = [...body.querySelectorAll('.aurora-col')];
         let day = dayIndexOf(drag.el);
         cols.forEach((col) => {
             const r = col.getBoundingClientRect();
             if (ev.clientX >= r.left && ev.clientX < r.right) day = Number(col.dataset.day);
         });
-        const colRect = body.querySelector('.ad-col[data-day="' + day + '"]').getBoundingClientRect();
+        const colRect = body.querySelector('.aurora-col[data-day="' + day + '"]').getBoundingClientRect();
         const hourH = colRect.height / DAY_HOURS;
         const s = (ev.clientY - colRect.top - drag.offsetY) / hourH;
         drag.el.classList.add('is-dragging');
@@ -265,9 +265,9 @@
         if (!drag) return;
         drag.el.classList.remove('is-dragging');
         if (drag.moved) {
-            const title = drag.el.querySelector('.ad-ev-title').textContent;
+            const title = drag.el.querySelector('.aurora-ev-title').textContent;
             announce('"' + title + '" moved to ' + DAYS[dayIndexOf(drag.el)] + ' ' +
-                drag.el.querySelector('.ad-ev-time').textContent + '.');
+                drag.el.querySelector('.aurora-ev-time').textContent + '.');
         }
         drag = null;
     }
@@ -278,7 +278,7 @@
     // ---- Keyboard moves ----
 
     demo.addEventListener('keydown', (ev) => {
-        const el = ev.target.closest('.ad-event');
+        const el = ev.target.closest('.aurora-event');
         if (!el) return;
         const s = getNum(el, '--s');
         const day = dayIndexOf(el);
@@ -290,12 +290,12 @@
         else handled = false;
         if (handled) {
             ev.preventDefault();
-            const title = el.querySelector('.ad-ev-title').textContent;
+            const title = el.querySelector('.aurora-ev-title').textContent;
             announce('"' + title + '" moved to ' + DAYS[dayIndexOf(el)] + ' ' +
-                el.querySelector('.ad-ev-time').textContent + '.');
+                el.querySelector('.aurora-ev-time').textContent + '.');
         }
     });
 
     // Fill in time labels and aria-labels for the seeded events
-    body.querySelectorAll('.ad-event').forEach(refreshEvent);
+    body.querySelectorAll('.aurora-event').forEach(refreshEvent);
 })();
