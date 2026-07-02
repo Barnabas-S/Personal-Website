@@ -3,10 +3,10 @@
 .aurora-demo {
     --hour-h: 42px;
     width: 100%;
-    border: 1px solid #e9e5f2;
+    border: 1px solid var(--border);
     border-radius: 1rem;
-    background: #ffffff;
-    box-shadow: 0 1px 2px rgba(20, 10, 40, 0.03);
+    background: var(--surface);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     margin-top: 0.5rem;
 }
@@ -16,8 +16,8 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.7rem 1rem;
-    border-bottom: 1px solid #e9e5f2;
-    background: linear-gradient(120deg, #faf5e8, #f7e4f5, #e6ddf5);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(120deg, #2a2340, #3a2350, #2a2c4a);
     font-size: 0.85rem;
 }
 
@@ -30,15 +30,15 @@
 }
 
 .aurora-topbar strong {
-    color: #3d2c6b;
+    color: var(--text);
     letter-spacing: -0.01em;
 }
 
 .aurora-week {
-    color: #6d4fc4;
+    color: var(--accent-hover);
     font-size: 0.75rem;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 999px;
     padding: 0.1rem 0.6rem;
 }
@@ -48,9 +48,9 @@
     font: inherit;
     font-size: 0.75rem;
     font-weight: 600;
-    color: #6d4fc4;
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(109, 79, 196, 0.25);
+    color: var(--accent-hover);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(167, 139, 250, 0.35);
     border-radius: 999px;
     padding: 0.2rem 0.7rem;
     cursor: pointer;
@@ -58,7 +58,7 @@
 
 .aurora-reset:hover,
 .aurora-reset:focus-visible {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
 }
 
 .aurora-body {
@@ -69,12 +69,12 @@
 /* Inbox + review queue */
 
 .aurora-inbox {
-    border-right: 1px solid #e9e5f2;
+    border-right: 1px solid var(--border);
     padding: 0.9rem;
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
-    background: #fbfaff;
+    background: var(--bg-alt);
 }
 
 .aurora-inbox h3 {
@@ -82,7 +82,7 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #8a879a;
+    color: var(--text-muted);
     display: flex;
     align-items: baseline;
     gap: 0.5rem;
@@ -93,8 +93,8 @@
     font-weight: 600;
     letter-spacing: 0;
     text-transform: none;
-    color: #6d4fc4;
-    background: #f1eafb;
+    color: var(--accent);
+    background: var(--accent-tint);
     border-radius: 999px;
     padding: 0.05rem 0.5rem;
 }
@@ -114,8 +114,8 @@
     flex-direction: column;
     gap: 0.1rem;
     padding: 0.55rem 0.65rem;
-    background: #ffffff;
-    border: 1px solid #e9e5f2;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 0.6rem;
     cursor: pointer;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -123,34 +123,34 @@
 
 .aurora-email:hover,
 .aurora-email:focus-visible {
-    border-color: #c9b8ea;
-    box-shadow: 0 2px 8px rgba(80, 50, 150, 0.08);
+    border-color: var(--border-strong);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .aurora-email .aurora-from {
     font-size: 0.72rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--text);
 }
 
 .aurora-email .aurora-subj {
     font-size: 0.72rem;
-    color: #52514e;
+    color: var(--text-secondary);
 }
 
 .aurora-email .aurora-state {
     font-size: 0.68rem;
     font-weight: 600;
-    color: #6d4fc4;
+    color: var(--accent);
     margin-top: 0.15rem;
 }
 
 .aurora-email.is-scanning {
-    border-color: #c9b8ea;
+    border-color: var(--border-strong);
     background-image: linear-gradient(100deg,
-        rgba(109, 79, 196, 0) 30%,
-        rgba(109, 79, 196, 0.08) 50%,
-        rgba(109, 79, 196, 0) 70%);
+        rgba(167, 139, 250, 0) 30%,
+        rgba(167, 139, 250, 0.12) 50%,
+        rgba(167, 139, 250, 0) 70%);
     background-size: 250% 100%;
     animation: aurora-shimmer 1.1s linear infinite;
     cursor: progress;
@@ -158,11 +158,11 @@
 
 .aurora-email.is-done {
     cursor: default;
-    background: #f7f5fc;
+    background: var(--surface-alt);
 }
 
 .aurora-email.is-done .aurora-state {
-    color: #0a7a55;
+    color: var(--success);
 }
 
 @keyframes aurora-shimmer {
@@ -178,13 +178,13 @@
 
 .aurora-queue-empty {
     font-size: 0.72rem;
-    color: #8a879a;
+    color: var(--text-muted);
 }
 
 .aurora-proposal {
-    border: 1px dashed #c9b8ea;
+    border: 1px dashed var(--border-strong);
     border-radius: 0.6rem;
-    background: #ffffff;
+    background: var(--surface);
     padding: 0.6rem 0.65rem;
     display: flex;
     flex-direction: column;
@@ -194,17 +194,17 @@
 .aurora-proposal .aurora-prop-title {
     font-size: 0.78rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--text);
 }
 
 .aurora-proposal .aurora-prop-time {
     font-size: 0.7rem;
-    color: #52514e;
+    color: var(--text-secondary);
 }
 
 .aurora-proposal .aurora-prop-src {
     font-size: 0.65rem;
-    color: #8a879a;
+    color: var(--text-muted);
 }
 
 .aurora-prop-actions {
@@ -224,24 +224,24 @@
 
 .aurora-approve {
     color: #ffffff;
-    background: #6d4fc4;
-    border: 1px solid #6d4fc4;
+    background: var(--accent-strong);
+    border: 1px solid var(--accent-strong);
 }
 
 .aurora-approve:hover,
 .aurora-approve:focus-visible {
-    background: #5b3fae;
+    background: var(--accent);
 }
 
 .aurora-dismiss {
-    color: #52514e;
-    background: #ffffff;
-    border: 1px solid #ddd9e8;
+    color: var(--text-secondary);
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
 }
 
 .aurora-dismiss:hover,
 .aurora-dismiss:focus-visible {
-    border-color: #b9b3cc;
+    border-color: var(--text-muted);
 }
 
 /* Calendar grid */
@@ -260,14 +260,14 @@
 .aurora-days {
     font-size: 0.7rem;
     font-weight: 700;
-    color: #52514e;
+    color: var(--text-secondary);
     text-align: center;
     padding-bottom: 0.35rem;
 }
 
 .aurora-grid {
     position: relative;
-    border-top: 1px solid #e9e5f2;
+    border-top: 1px solid var(--border);
 }
 
 .aurora-times {
@@ -278,7 +278,7 @@
 .aurora-times span {
     height: var(--hour-h);
     font-size: 0.62rem;
-    color: #8a879a;
+    color: var(--text-muted);
     text-align: right;
     padding-right: 0.5rem;
     transform: translateY(-0.5em);
@@ -288,13 +288,13 @@
 .aurora-col {
     position: relative;
     height: calc(var(--hour-h) * 10);
-    border-left: 1px solid #efedf5;
+    border-left: 1px solid var(--border);
     background-image: repeating-linear-gradient(
         to bottom,
         transparent 0,
         transparent calc(var(--hour-h) - 1px),
-        #f2f0f8 calc(var(--hour-h) - 1px),
-        #f2f0f8 var(--hour-h)
+        var(--bg-alt) calc(var(--hour-h) - 1px),
+        var(--bg-alt) var(--hour-h)
     );
 }
 
@@ -304,8 +304,8 @@
     right: 3px;
     top: calc(var(--s) * var(--hour-h) + 1px);
     height: calc(var(--d) * var(--hour-h) - 3px);
-    background: #f1eafb;
-    border-left: 3px solid #6d4fc4;
+    background: var(--accent-tint);
+    border-left: 3px solid var(--accent);
     border-radius: 5px;
     padding: 2px 6px;
     overflow: hidden;
@@ -319,13 +319,13 @@
 }
 
 .aurora-event:focus-visible {
-    outline: 2px solid #6d4fc4;
+    outline: 2px solid var(--accent);
     outline-offset: 1px;
 }
 
 .aurora-event.is-dragging {
     cursor: grabbing;
-    box-shadow: 0 8px 18px rgba(80, 50, 150, 0.25);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
     z-index: 5;
     opacity: 0.92;
 }
@@ -334,7 +334,7 @@
     flex: none;
     font-size: 0.68rem;
     font-weight: 700;
-    color: #3d2c6b;
+    color: var(--text);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -343,7 +343,7 @@
 .aurora-event .aurora-ev-time {
     flex: none;
     font-size: 0.62rem;
-    color: #52514e;
+    color: var(--text-secondary);
     font-variant-numeric: tabular-nums;
 }
 
@@ -352,12 +352,12 @@
 }
 
 .aurora-event--email {
-    background: #e4f6ee;
-    border-left-color: #0a7a55;
+    background: var(--success-tint);
+    border-left-color: var(--success);
 }
 
 .aurora-event--email .aurora-ev-title {
-    color: #0a5c41;
+    color: var(--success);
 }
 
 .aurora-event.is-new {
@@ -377,17 +377,17 @@
 
 .aurora-status {
     padding: 0.55rem 1rem;
-    border-top: 1px solid #e9e5f2;
+    border-top: 1px solid var(--border);
     font-size: 0.75rem;
-    color: #52514e;
+    color: var(--text-secondary);
     min-height: 2.1rem;
-    background: #fbfaff;
+    background: var(--bg-alt);
     margin: 0;
 }
 
 .aurora-hint {
     font-size: 0.8rem;
-    color: #8a879a;
+    color: var(--text-muted);
 }
 
 @media (max-width: 720px) {
@@ -397,7 +397,7 @@
 
     .aurora-inbox {
         border-right: none;
-        border-bottom: 1px solid #e9e5f2;
+        border-bottom: 1px solid var(--border);
     }
 }
 

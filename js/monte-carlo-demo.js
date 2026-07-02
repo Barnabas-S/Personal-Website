@@ -15,14 +15,15 @@
     const N_STEPS = 120;
 
     const COLOR = {
-        violet: '#6d4fc4',
-        teal: '#1baf7a',
-        gray: 'rgba(140, 135, 160, 0.35)',
-        violetPath: 'rgba(109, 79, 196, 0.35)',
+        violet: '#a78bfa',
+        teal: '#34d399',
+        gray: 'rgba(160, 155, 180, 0.35)',
+        violetPath: 'rgba(167, 139, 250, 0.4)',
         muted: '#8a879a',
-        grid: '#efedf5',
-        axis: '#c8c5d4',
-        ink: '#1a1a1a'
+        grid: '#2a2536',
+        axis: '#4a4162',
+        ink: '#f1eef7',
+        bg: '#1d1926'
     };
 
     function mulberry32(a) {
@@ -255,7 +256,7 @@
         dashedLine(ctx, M.left, w - M.right, Math.round(ys(K)), COLOR.muted);
         ctx.textAlign = 'right';
         ctx.textBaseline = 'bottom';
-        ctx.strokeStyle = '#ffffff';
+        ctx.strokeStyle = COLOR.bg;
         ctx.lineWidth = 3;
         ctx.strokeText('Strike K = ' + K, w - M.right, ys(K) - 3);
         ctx.fillStyle = COLOR.muted;
