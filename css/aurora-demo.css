@@ -298,10 +298,6 @@
     );
 }
 
-.ad-col.is-dragover {
-    background-color: #faf8ff;
-}
-
 .ad-event {
     position: absolute;
     left: 3px;

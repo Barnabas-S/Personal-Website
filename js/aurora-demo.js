@@ -221,6 +221,10 @@
         if (ev.target.closest('.ad-reset')) {
             timers.forEach(clearTimeout);
             timers.clear();
+            if (drag) {
+                drag.el.classList.remove('is-dragging');
+                drag = null;
+            }
             body.innerHTML = initialBody;
             body.querySelectorAll('.ad-event').forEach(refreshEvent);
             announce('Demo reset.');
@@ -238,6 +242,7 @@
         drag = { el, offsetY: ev.clientY - rect.top, moved: false };
         el.setPointerCapture(ev.pointerId);
         ev.preventDefault();
+        el.focus({ preventScroll: true });
     });
 
     demo.addEventListener('pointermove', (ev) => {
@@ -283,7 +288,12 @@
         else if (ev.key === 'ArrowLeft') moveEvent(el, Math.max(0, day - 1), s);
         else if (ev.key === 'ArrowRight') moveEvent(el, Math.min(DAYS.length - 1, day + 1), s);
         else handled = false;
-        if (handled) ev.preventDefault();
+        if (handled) {
+            ev.preventDefault();
+            const title = el.querySelector('.ad-ev-title').textContent;
+            announce('"' + title + '" moved to ' + DAYS[dayIndexOf(el)] + ' ' +
+                el.querySelector('.ad-ev-time').textContent + '.');
+        }
     });
 
     // Fill in time labels and aria-labels for the seeded events

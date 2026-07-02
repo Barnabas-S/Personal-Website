@@ -489,6 +489,8 @@
             if (!current) return;
             drawPaths(current);
             drawConv(current);
+            hideTip(pathsWrap);
+            hideTip(convWrap);
         }).observe(demo);
     }
 
