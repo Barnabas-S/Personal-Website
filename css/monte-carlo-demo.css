@@ -1,0 +1,295 @@
+/* Monte Carlo interactive demo */
+
+.mc-demo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.mc-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid #e9e5f2;
+    border-radius: 0.75rem;
+    background: #fbfaff;
+}
+
+.mc-controls label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #3d2c6b;
+}
+
+.mc-controls output {
+    font-variant-numeric: tabular-nums;
+    min-width: 2.6em;
+    color: #6d4fc4;
+}
+
+.mc-controls input[type="range"] {
+    accent-color: #6d4fc4;
+    width: 10rem;
+    max-width: 40vw;
+}
+
+.mc-controls button {
+    margin-left: auto;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: #6d4fc4;
+    border: none;
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.mc-controls button:hover,
+.mc-controls button:focus-visible {
+    background: #5b3fae;
+    transform: translateY(-1px);
+}
+
+.mc-chart {
+    margin: 0;
+    padding: 1.1rem 1.1rem 0.9rem;
+    border: 1px solid #e9e5f2;
+    border-radius: 0.75rem;
+    background: #ffffff;
+}
+
+.mc-chart figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin-bottom: 0.6rem;
+}
+
+.mc-chart figcaption strong {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+}
+
+.mc-chart .mc-sub {
+    font-size: 0.78rem;
+    color: #8a879a;
+}
+
+.mc-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    color: #52514e;
+}
+
+.mc-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.mc-key {
+    display: inline-block;
+    width: 16px;
+    height: 0;
+    border-top: 2px solid currentColor;
+    border-radius: 2px;
+}
+
+.mc-key--violet { color: #6d4fc4; }
+.mc-key--teal { color: #1baf7a; }
+.mc-key--gray { color: #b9b6c4; }
+.mc-key--dash {
+    color: #8a879a;
+    border-top-style: dashed;
+}
+
+.mc-canvas-wrap {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    outline: none;
+    touch-action: pan-y;
+}
+
+.mc-canvas-wrap:focus-visible {
+    outline: 2px solid #6d4fc4;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.mc-canvas-wrap canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mc-crosshair {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    background: #c8c5d4;
+    pointer-events: none;
+    display: none;
+}
+
+.mc-tip {
+    position: absolute;
+    z-index: 3;
+    min-width: 10rem;
+    padding: 0.5rem 0.65rem;
+    background: #ffffff;
+    border: 1px solid #e6e4ec;
+    border-radius: 0.5rem;
+    box-shadow: 0 6px 18px rgba(30, 15, 70, 0.12);
+    font-size: 0.72rem;
+    line-height: 1.45;
+    color: #52514e;
+    pointer-events: none;
+    display: none;
+}
+
+.mc-tip-head {
+    color: #8a879a;
+    margin-bottom: 0.2rem;
+}
+
+.mc-tip-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.mc-tip-row .mc-key {
+    width: 12px;
+    flex: none;
+}
+
+.mc-tip-row strong {
+    color: #1a1a1a;
+    font-variant-numeric: tabular-nums;
+}
+
+.mc-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+
+.mc-stat {
+    padding: 0.8rem 1rem;
+    border: 1px solid #e9e5f2;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.mc-stat .mc-stat-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #8a879a;
+}
+
+.mc-stat .mc-stat-value {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.mc-stat .mc-stat-note {
+    font-size: 0.72rem;
+    color: #8a879a;
+    font-variant-numeric: tabular-nums;
+}
+
+.mc-noscript {
+    padding: 0.9rem 1.1rem;
+    border: 1px solid #e9e5f2;
+    border-radius: 0.75rem;
+    background: #fbfaff;
+    color: #52514e;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+    .mc-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mc-controls button {
+        margin-left: 0;
+    }
+}
+
+/* Key results cards */
+
+.mc-theorems {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mc-theorem {
+    padding: 1.4rem 1.5rem;
+    border: 1px solid #e9e5f2;
+    border-radius: 1rem;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(20, 10, 40, 0.03);
+}
+
+.mc-theorem .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6d4fc4;
+    background: #f1eafb;
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+    margin-bottom: 0.6rem;
+}
+
+.mc-theorem h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+}
+
+.mc-theorem p {
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.mc-formula {
+    margin: 0.7rem 0;
+    padding: 0.75rem 1rem;
+    background: #faf9fd;
+    border: 1px solid #efecf6;
+    border-radius: 0.5rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    color: #2a2140;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.mc-formula var {
+    font-style: italic;
+}

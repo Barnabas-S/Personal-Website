@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/monte-carlo-demo.css">
 </head>
 <body>
 
@@ -49,6 +50,142 @@
                     variance reduction techniques converge faster than plain Monte Carlo.
                 </p>
 
+                <h2>See it run, live</h2>
+                <p>
+                    This is the core experiment from the paper, re-implemented in your browser:
+                    pricing a European call (S<sub>0</sub> = 100, K = 90, r = 3%, T = 1 year)
+                    by simulation. Drag the volatility slider or re-run with fresh random numbers
+                    and watch the antithetic estimator lock onto the exact Black-Scholes price
+                    with far fewer samples than plain Monte Carlo.
+                </p>
+
+                <noscript>
+                    <p class="mc-noscript">
+                        The live simulation needs JavaScript.
+                        The paper linked below contains the full results and proofs.
+                    </p>
+                </noscript>
+
+                <div class="mc-demo" id="mc-demo">
+                    <div class="mc-controls">
+                        <label for="mc-sigma">Volatility &sigma;
+                            <output id="mc-sigma-out" for="mc-sigma">20%</output>
+                        </label>
+                        <input type="range" id="mc-sigma" min="10" max="50" value="20" step="1">
+                        <button type="button" id="mc-rerun">Re-run simulation</button>
+                    </div>
+
+                    <figure class="mc-chart">
+                        <figcaption>
+                            <strong>Simulated price paths</strong>
+                            <span class="mc-sub">60 geometric Brownian motion paths over one year. Hover or focus and use arrow keys to inspect.</span>
+                        </figcaption>
+                        <div class="mc-legend">
+                            <span><span class="mc-key mc-key--violet"></span>Ends in the money</span>
+                            <span><span class="mc-key mc-key--gray"></span>Expires worthless</span>
+                            <span><span class="mc-key mc-key--dash"></span>Strike</span>
+                        </div>
+                        <div class="mc-canvas-wrap" id="mc-paths-wrap" tabindex="0" role="img"
+                             aria-label="Line chart of 60 simulated stock price paths over one year, with the strike price marked at 90.">
+                            <canvas id="mc-paths"></canvas>
+                            <div class="mc-crosshair"></div>
+                            <div class="mc-tip"></div>
+                        </div>
+                    </figure>
+
+                    <figure class="mc-chart">
+                        <figcaption>
+                            <strong>Convergence to the Black-Scholes price</strong>
+                            <span class="mc-sub">Running price estimate by number of payoff samples (log scale), for the same total budget.</span>
+                        </figcaption>
+                        <div class="mc-legend">
+                            <span><span class="mc-key mc-key--violet"></span>Plain Monte Carlo</span>
+                            <span><span class="mc-key mc-key--teal"></span>Antithetic variates</span>
+                            <span><span class="mc-key mc-key--dash"></span>Black-Scholes exact</span>
+                        </div>
+                        <div class="mc-canvas-wrap" id="mc-conv-wrap" tabindex="0" role="img"
+                             aria-label="Line chart of the running Monte Carlo price estimate against the number of samples, comparing plain Monte Carlo with antithetic variates. Both converge to the exact Black-Scholes price; the antithetic estimate settles sooner.">
+                            <canvas id="mc-conv"></canvas>
+                            <div class="mc-crosshair"></div>
+                            <div class="mc-tip"></div>
+                        </div>
+                    </figure>
+
+                    <div class="mc-stats">
+                        <div class="mc-stat">
+                            <span class="mc-stat-label">Black-Scholes exact</span>
+                            <span class="mc-stat-value" id="mc-stat-bs">-</span>
+                            <span class="mc-stat-note">closed form</span>
+                        </div>
+                        <div class="mc-stat">
+                            <span class="mc-stat-label">Plain Monte Carlo</span>
+                            <span class="mc-stat-value" id="mc-stat-plain">-</span>
+                            <span class="mc-stat-note" id="mc-stat-plain-ci">-</span>
+                        </div>
+                        <div class="mc-stat">
+                            <span class="mc-stat-label">Antithetic variates</span>
+                            <span class="mc-stat-value" id="mc-stat-anti">-</span>
+                            <span class="mc-stat-note" id="mc-stat-anti-ci">-</span>
+                        </div>
+                        <div class="mc-stat">
+                            <span class="mc-stat-label">Variance reduction</span>
+                            <span class="mc-stat-value" id="mc-stat-vrf">-</span>
+                            <span class="mc-stat-note">vs plain, same budget</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Key results from the paper</h2>
+                <p>
+                    The paper's emphasis is on proving <em>why</em> these techniques work,
+                    not just showing that they do. Three of the central results:
+                </p>
+
+                <div class="mc-theorems">
+                    <article class="mc-theorem">
+                        <span class="tag">The problem</span>
+                        <h3>Monte Carlo error shrinks like 1/&radic;n</h3>
+                        <div class="mc-formula">
+                            &radic;n&thinsp;(<var>Y&#772;</var><sub>n</sub> &minus; &mu;) &rArr; N(0, &sigma;&sup2;)
+                        </div>
+                        <p>
+                            By the central limit theorem, the estimator's 95% confidence interval
+                            has half-width 1.96&thinsp;&sigma;/&radic;n. One extra digit of accuracy
+                            costs 100&times; the samples, so the practical way forward is to
+                            shrink &sigma; itself. That is what variance reduction does.
+                        </p>
+                    </article>
+
+                    <article class="mc-theorem">
+                        <span class="tag">Antithetic variates</span>
+                        <h3>Mirrored samples never hurt, and usually help</h3>
+                        <div class="mc-formula">
+                            Var(<var>Y&#772;</var><sub>AV</sub>) = (&sigma;&sup2;/2)(1 + &rho;),&emsp;&rho; = Corr(<var>f</var>(<var>Z</var>), <var>f</var>(&minus;<var>Z</var>))
+                        </div>
+                        <p>
+                            Each draw <var>Z</var> is paired with its mirror image &minus;<var>Z</var> and the two
+                            payoffs are averaged. The paper proves that when the payoff is a monotone
+                            function of <var>Z</var>, the correlation &rho; is at most zero, so an antithetic
+                            pair is guaranteed to beat two independent samples. The demo above shows
+                            exactly this guarantee at work.
+                        </p>
+                    </article>
+
+                    <article class="mc-theorem">
+                        <span class="tag">Control variates</span>
+                        <h3>Borrowing accuracy from a known expectation</h3>
+                        <div class="mc-formula">
+                            Var(<var>Y</var> &minus; &beta;*(<var>X</var> &minus; E[<var>X</var>])) = (1 &minus; &rho;&sup2;<sub><var>XY</var></sub>)&thinsp;Var(<var>Y</var>)
+                        </div>
+                        <p>
+                            If a quantity <var>X</var> correlated with the payoff has a known mean, the
+                            estimator can be corrected by the observed error in <var>X</var>. At the optimal
+                            coefficient &beta;* = Cov(<var>Y</var>,&thinsp;<var>X</var>)/Var(<var>X</var>), the variance is multiplied
+                            by 1 &minus; &rho;&sup2;: a correlation of 0.95 cuts the required samples by roughly 10&times;.
+                        </p>
+                    </article>
+                </div>
+
                 <h2>What it covers</h2>
                 <ul>
                     <li>Option pricing under the Black-Scholes framework, simulated via Monte Carlo</li>
@@ -76,6 +213,7 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script src="../js/monte-carlo-demo.js" defer></script>
 
 </body>
 </html>
