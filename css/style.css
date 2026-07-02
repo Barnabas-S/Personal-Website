@@ -1,3 +1,22 @@
+:root {
+    --bg: #131019;
+    --bg-alt: #17131f;
+    --surface: #1d1926;
+    --surface-alt: #241f30;
+    --border: #322c42;
+    --border-strong: #4a4162;
+    --text: #f1eef7;
+    --text-secondary: #c7c2d6;
+    --text-muted: #8a879a;
+    --accent: #a78bfa;
+    --accent-hover: #c4a6ff;
+    --accent-strong: #7c5cd6;
+    --accent-tint: #2a2340;
+    --success: #34d399;
+    --success-tint: #163227;
+    --header-bg: rgba(19, 16, 25, 0.7);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +30,8 @@ html {
 body {
     font-family: Inter, system-ui, sans-serif;
     line-height: 1.6;
-    color: #1a1a1a;
+    color: var(--text);
+    background: var(--bg);
 }
 
 header {
@@ -19,8 +39,8 @@ header {
     top: 0;
     z-index: 10;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.7);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border);
 }
 
 nav {
@@ -38,7 +58,7 @@ nav ul {
 }
 
 nav a {
-    color: #6d4fc4;
+    color: var(--accent);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
@@ -47,7 +67,7 @@ nav a {
 
 nav a:hover,
 nav a:focus-visible {
-    color: #a855f7;
+    color: var(--accent-hover);
 }
 
 #hero {
@@ -65,12 +85,12 @@ nav a:focus-visible {
 
     background: linear-gradient(
         120deg,
-        #f5f0dc,
-        #eec9ec,
-        #a78bd8,
-        #8f8fd4,
-        #eec9ec,
-        #f5f0dc
+        #1c1430,
+        #3a2260,
+        #5b3fae,
+        #6d4fc4,
+        #3a2260,
+        #1c1430
     );
     background-size: 300% 300%;
     animation: hero-gradient 18s ease infinite;
@@ -145,7 +165,7 @@ nav a:focus-visible {
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #6d4fc4;
+    color: var(--accent);
 }
 
 .reveal {
@@ -185,7 +205,7 @@ nav a:focus-visible {
 
     padding: 5rem 3rem;
 
-    background-color: #ffffff;
+    background-color: var(--bg);
 
 }
 
@@ -197,7 +217,7 @@ nav a:focus-visible {
 }
 
 #about p {
-    color: #444;
+    color: var(--text-secondary);
 }
 
 .skills {
@@ -210,9 +230,9 @@ nav a:focus-visible {
 .skills span {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #444;
-    background: #f3f2f6;
-    border: 1px solid #e6e4ec;
+    color: var(--text-secondary);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 999px;
     padding: 0.35rem 0.85rem;
 }
@@ -221,7 +241,7 @@ nav a:focus-visible {
 
     padding: 5rem 3rem;
 
-    background-color: #faf9fd;
+    background-color: var(--bg-alt);
 
 }
 
@@ -232,18 +252,18 @@ nav a:focus-visible {
 #projects article {
     width: 100%;
     padding: 1.75rem;
-    border: 1px solid #e9e5f2;
+    border: 1px solid var(--border);
     border-radius: 1rem;
-    background-color: #ffffff;
-    box-shadow: 0 1px 2px rgba(20, 10, 40, 0.03);
+    background-color: var(--surface);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     position: relative;
 }
 
 #projects article:hover {
     transform: translateY(-4px);
-    box-shadow: 0 14px 28px rgba(80, 50, 150, 0.12);
-    border-color: #d9cdf0;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+    border-color: var(--border-strong);
 }
 
 #projects article .tag {
@@ -252,8 +272,8 @@ nav a:focus-visible {
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #6d4fc4;
-    background: #f1eafb;
+    color: var(--accent);
+    background: var(--accent-tint);
     border-radius: 999px;
     padding: 0.25rem 0.7rem;
     margin-bottom: 0.75rem;
@@ -265,13 +285,13 @@ nav a:focus-visible {
 }
 
 #projects article p {
-    color: #444;
+    color: var(--text-secondary);
 }
 
 .project-link {
     display: inline-block;
     margin-top: 0.75rem;
-    color: #6d4fc4;
+    color: var(--accent);
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
@@ -286,7 +306,7 @@ nav a:focus-visible {
 
     padding: 5rem 3rem;
 
-    background-color: #ffffff;
+    background-color: var(--bg);
 
 }
 
@@ -300,21 +320,21 @@ nav a:focus-visible {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: #3d2c6b;
+    color: var(--text);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
     padding: 0.6rem 1.1rem;
-    border: 1px solid #e0d8f2;
+    border: 1px solid var(--border);
     border-radius: 999px;
-    background: #fbfaff;
+    background: var(--surface);
     transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 
 .contact-links a:hover,
 .contact-links a:focus-visible {
-    background: #f1eafb;
-    border-color: #c9b8ea;
+    background: var(--accent-tint);
+    border-color: var(--border-strong);
     transform: translateY(-2px);
 }
 
@@ -326,8 +346,8 @@ nav a:focus-visible {
 footer {
     padding: 2rem 3rem;
     text-align: center;
-    border-top: 1px solid #eee;
-    color: #999;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
     font-size: 0.85rem;
 }
 
@@ -340,12 +360,12 @@ footer {
 
     background: linear-gradient(
         120deg,
-        #f5f0dc,
-        #eec9ec,
-        #a78bd8,
-        #8f8fd4,
-        #eec9ec,
-        #f5f0dc
+        #1c1430,
+        #3a2260,
+        #5b3fae,
+        #6d4fc4,
+        #3a2260,
+        #1c1430
     );
     background-size: 300% 300%;
     animation: hero-gradient 18s ease infinite;
@@ -364,7 +384,7 @@ footer {
 .project-hero .tagline {
     font-size: 1.15rem;
     max-width: 40rem;
-    color: #3d2c6b;
+    color: var(--text-secondary);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -376,7 +396,7 @@ footer {
 
 .project-detail {
     padding: 4rem 3rem;
-    background-color: #ffffff;
+    background-color: var(--bg);
 }
 
 .project-detail .section-inner {
@@ -394,11 +414,11 @@ footer {
 }
 
 .project-detail p {
-    color: #444;
+    color: var(--text-secondary);
 }
 
 .project-detail ul {
-    color: #444;
+    color: var(--text-secondary);
     padding-left: 1.25rem;
     display: flex;
     flex-direction: column;
@@ -408,7 +428,7 @@ footer {
 .back-link {
     display: inline-block;
     margin-top: 2.5rem;
-    color: #6d4fc4;
+    color: var(--accent);
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;

@@ -14,9 +14,9 @@
     align-items: center;
     gap: 1rem;
     padding: 0.9rem 1.1rem;
-    border: 1px solid #e9e5f2;
+    border: 1px solid var(--border);
     border-radius: 0.75rem;
-    background: #fbfaff;
+    background: var(--surface);
 }
 
 .mc-controls label {
@@ -25,17 +25,17 @@
     gap: 0.5rem;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #3d2c6b;
+    color: var(--text-secondary);
 }
 
 .mc-controls output {
     font-variant-numeric: tabular-nums;
     min-width: 2.6em;
-    color: #6d4fc4;
+    color: var(--accent);
 }
 
 .mc-controls input[type="range"] {
-    accent-color: #6d4fc4;
+    accent-color: var(--accent);
     width: 10rem;
     max-width: 40vw;
 }
@@ -46,7 +46,7 @@
     font-size: 0.85rem;
     font-weight: 600;
     color: #ffffff;
-    background: #6d4fc4;
+    background: var(--accent-strong);
     border: none;
     border-radius: 999px;
     padding: 0.5rem 1.1rem;
@@ -56,16 +56,16 @@
 
 .mc-controls button:hover,
 .mc-controls button:focus-visible {
-    background: #5b3fae;
+    background: var(--accent);
     transform: translateY(-1px);
 }
 
 .mc-chart {
     margin: 0;
     padding: 1.1rem 1.1rem 0.9rem;
-    border: 1px solid #e9e5f2;
+    border: 1px solid var(--border);
     border-radius: 0.75rem;
-    background: #ffffff;
+    background: var(--surface);
 }
 
 .mc-chart figcaption {
@@ -77,12 +77,12 @@
 
 .mc-chart figcaption strong {
     font-size: 0.95rem;
-    color: #1a1a1a;
+    color: var(--text);
 }
 
 .mc-chart .mc-sub {
     font-size: 0.78rem;
-    color: #8a879a;
+    color: var(--text-muted);
 }
 
 .mc-legend {
@@ -91,7 +91,7 @@
     gap: 0.4rem 1.1rem;
     margin-bottom: 0.5rem;
     font-size: 0.75rem;
-    color: #52514e;
+    color: var(--text-secondary);
 }
 
 .mc-legend span {
@@ -108,11 +108,11 @@
     border-radius: 2px;
 }
 
-.mc-key--violet { color: #6d4fc4; }
-.mc-key--teal { color: #1baf7a; }
-.mc-key--gray { color: #b9b6c4; }
+.mc-key--violet { color: var(--accent); }
+.mc-key--teal { color: #34d399; }
+.mc-key--gray { color: #6f6b82; }
 .mc-key--dash {
-    color: #8a879a;
+    color: var(--text-muted);
     border-top-style: dashed;
 }
 
@@ -125,7 +125,7 @@
 }
 
 .mc-canvas-wrap:focus-visible {
-    outline: 2px solid #6d4fc4;
+    outline: 2px solid var(--accent);
     outline-offset: 4px;
     border-radius: 4px;
 }
@@ -141,7 +141,7 @@
     position: absolute;
     top: 0;
     width: 1px;
-    background: #c8c5d4;
+    background: var(--border-strong);
     pointer-events: none;
     display: none;
 }
@@ -151,19 +151,19 @@
     z-index: 3;
     min-width: 10rem;
     padding: 0.5rem 0.65rem;
-    background: #ffffff;
-    border: 1px solid #e6e4ec;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
     border-radius: 0.5rem;
-    box-shadow: 0 6px 18px rgba(30, 15, 70, 0.12);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
     font-size: 0.72rem;
     line-height: 1.45;
-    color: #52514e;
+    color: var(--text-secondary);
     pointer-events: none;
     display: none;
 }
 
 .mc-tip-head {
-    color: #8a879a;
+    color: var(--text-muted);
     margin-bottom: 0.2rem;
 }
 
@@ -180,7 +180,7 @@
 }
 
 .mc-tip-row strong {
-    color: #1a1a1a;
+    color: var(--text);
     font-variant-numeric: tabular-nums;
 }
 
@@ -192,9 +192,9 @@
 
 .mc-stat {
     padding: 0.8rem 1rem;
-    border: 1px solid #e9e5f2;
+    border: 1px solid var(--border);
     border-radius: 0.75rem;
-    background: #ffffff;
+    background: var(--surface);
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
@@ -203,27 +203,27 @@
 .mc-stat .mc-stat-label {
     font-size: 0.72rem;
     font-weight: 600;
-    color: #8a879a;
+    color: var(--text-muted);
 }
 
 .mc-stat .mc-stat-value {
     font-size: 1.35rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: var(--text);
 }
 
 .mc-stat .mc-stat-note {
     font-size: 0.72rem;
-    color: #8a879a;
+    color: var(--text-muted);
     font-variant-numeric: tabular-nums;
 }
 
 .mc-noscript {
     padding: 0.9rem 1.1rem;
-    border: 1px solid #e9e5f2;
+    border: 1px solid var(--border);
     border-radius: 0.75rem;
-    background: #fbfaff;
-    color: #52514e;
+    background: var(--surface);
+    color: var(--text-secondary);
     font-size: 0.9rem;
 }
 
@@ -248,10 +248,10 @@
 
 .mc-theorem {
     padding: 1.4rem 1.5rem;
-    border: 1px solid #e9e5f2;
+    border: 1px solid var(--border);
     border-radius: 1rem;
-    background: #ffffff;
-    box-shadow: 0 1px 2px rgba(20, 10, 40, 0.03);
+    background: var(--surface);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .mc-theorem .tag {
@@ -260,8 +260,8 @@
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #6d4fc4;
-    background: #f1eafb;
+    color: var(--accent);
+    background: var(--accent-tint);
     border-radius: 999px;
     padding: 0.25rem 0.7rem;
     margin-bottom: 0.6rem;
@@ -273,19 +273,19 @@
 }
 
 .mc-theorem p {
-    color: #444;
+    color: var(--text-secondary);
     font-size: 0.95rem;
 }
 
 .mc-formula {
     margin: 0.7rem 0;
     padding: 0.75rem 1rem;
-    background: #faf9fd;
-    border: 1px solid #efecf6;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
     border-radius: 0.5rem;
     font-family: Georgia, "Times New Roman", serif;
     font-size: 1.05rem;
-    color: #2a2140;
+    color: var(--text);
     overflow-x: auto;
     white-space: nowrap;
 }
